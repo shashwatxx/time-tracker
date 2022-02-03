@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+///This is the widget that displays the time tracking data according to category
 class TimeCategoryCard extends StatelessWidget {
   final String backGroundImage;
   final Color backGroundColor;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+/// This is the class for the Drawer of the App
 class TtDrawer extends StatelessWidget {
   const TtDrawer({Key? key}) : super(key: key);
 

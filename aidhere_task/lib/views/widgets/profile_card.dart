@@ -4,6 +4,7 @@ import 'package:aidhere_task/core/utils/period_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+/// This is the widget that displays the Profile information
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
     Key? key,
