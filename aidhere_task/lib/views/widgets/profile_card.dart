@@ -1,5 +1,8 @@
+import 'package:aidhere_task/controllers/time_tracking_controller.dart';
 import 'package:aidhere_task/core/color_palatte.dart';
+import 'package:aidhere_task/core/utils/period_enums.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -18,33 +21,57 @@ class ProfileCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                "Daily",
-                style: TextStyle(
-                  color: ColorPalatte.paleBlue,
-                  fontSize: 22,
+          child: Consumer<TimeTrackingController>(builder:
+              (BuildContext context, TimeTrackingController controller, _) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                InkWell(
+                  onTap: () {
+                    controller.setSelectedPeriod(Period.daily);
+                  },
+                  child: Text(
+                    "Daily",
+                    style: TextStyle(
+                      color: controller.selectedPeriod == Period.daily
+                          ? Colors.white
+                          : ColorPalatte.paleBlue,
+                      fontSize: 22,
+                    ),
+                  ),
                 ),
-              ),
-              const Text(
-                "Weekly",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
+                InkWell(
+                  onTap: () {
+                    controller.setSelectedPeriod(Period.weekly);
+                  },
+                  child: Text(
+                    "Weekly",
+                    style: TextStyle(
+                      color: controller.selectedPeriod == Period.weekly
+                          ? Colors.white
+                          : ColorPalatte.paleBlue,
+                      fontSize: 22,
+                    ),
+                  ),
                 ),
-              ),
-              Text(
-                "Monthly",
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
-                  fontSize: 22,
+                InkWell(
+                  onTap: () {
+                    controller.setSelectedPeriod(Period.monthly);
+                  },
+                  child: Text(
+                    "Monthly",
+                    style: TextStyle(
+                      color: controller.selectedPeriod == Period.monthly
+                          ? Colors.white
+                          : ColorPalatte.paleBlue,
+                      fontSize: 22,
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            );
+          }),
         ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 14),

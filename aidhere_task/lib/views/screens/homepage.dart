@@ -8,8 +8,22 @@ import 'package:aidhere_task/views/widgets/time_category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late TimeTrackingController timeTrackingController;
+
+  @override
+  void initState() {
+    timeTrackingController =
+        Provider.of<TimeTrackingController>(context, listen: false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,37 +39,38 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Consumer<TimeTrackingController>(builder: (BuildContext context,
-                  TimeTrackingController controller, Widget? child) {
-                return FutureBuilder(
-                    future: controller.getTimeTrackingInfo(),
-                    builder: (context,
-                        AsyncSnapshot<List<TimeTrackingResponse>> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                      if (snapshot.hasData && snapshot.data != null) {
-                        return Expanded(
-                          child: ListView.builder(
-                            itemCount: snapshot.data?.length,
-                            itemBuilder: (context, index) {
-                              return TimeCategoryCard(
-                                backGroundColor: ColorPalatte.getBgColor(
-                                    snapshot.data![index].title),
-                                backGroundImage:
-                                    getIcon(snapshot.data![index].title),
-                                timeTrackingResponse: snapshot.data![index],
-                              );
-                            },
-                          ),
-                        );
-                      }
-                      return const Text(
-                        "No data Found",
-                        style: TextStyle(color: ColorPalatte.white),
+              // Consumer<TimeTrackingController>(builder: (BuildContext context,
+              //     TimeTrackingController controller, Widget? child) {
+              //   return
+              FutureBuilder(
+                  future: timeTrackingController.getTimeTrackingInfo(),
+                  builder: (context,
+                      AsyncSnapshot<List<TimeTrackingResponse>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (snapshot.hasData && snapshot.data != null) {
+                      return Expanded(
+                        child: ListView.builder(
+                          itemCount: snapshot.data?.length,
+                          itemBuilder: (context, index) {
+                            return TimeCategoryCard(
+                              backGroundColor: ColorPalatte.getBgColor(
+                                  snapshot.data![index].title),
+                              backGroundImage:
+                                  getIcon(snapshot.data![index].title),
+                              timeTrackingResponse: snapshot.data![index],
+                            );
+                          },
+                        ),
                       );
-                    });
-              })
+                    }
+                    return const Text(
+                      "No data Found",
+                      style: TextStyle(color: ColorPalatte.white),
+                    );
+                  })
+              // })
               // TimeCategoryCard(
               //   backGroundImage: workIcon,
               //   backGroundColor: ColorPalatte.lightRedWork,

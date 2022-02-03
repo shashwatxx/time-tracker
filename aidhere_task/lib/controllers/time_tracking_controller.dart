@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class TimeTrackingController extends ChangeNotifier {
-  Period _selectedPeriod = Period.weekly;
+  Period _selectedPeriod = Period.daily;
 
   Period get selectedPeriod => _selectedPeriod;
 

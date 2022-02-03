@@ -1,7 +1,11 @@
+import 'package:aidhere_task/controllers/time_tracking_controller.dart';
 import 'package:aidhere_task/core/color_palatte.dart';
+import 'package:aidhere_task/core/utils/get_hours_from_period.dart';
+import 'package:aidhere_task/core/utils/get_period_name.dart';
 import 'package:aidhere_task/models/time_tracking_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class TimeCategoryCard extends StatelessWidget {
   final String backGroundImage;
@@ -43,69 +47,73 @@ class TimeCategoryCard extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            height: 155,
-            margin: const EdgeInsets.symmetric(horizontal: 14),
-            decoration: BoxDecoration(
-              color: ColorPalatte.darkBlue,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      timeTrackingResponse.title,
-                      style: const TextStyle(
-                          color: ColorPalatte.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      (timeTrackingResponse.timeframes.daily.current)
-                              .toString() +
-                          'hrs',
-                      style: const TextStyle(
-                          color: ColorPalatte.white,
-                          fontSize: 34,
-                          fontWeight: FontWeight.w100),
-                    )
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.more_horiz,
-                      color: ColorPalatte.paleBlue,
-                      size: 40,
-                    ),
-                    // const SizedBox(
-                    //   height: 10,
-                    // ),
-                    Text(
-                      "Last Week - " +
-                          (timeTrackingResponse.timeframes.daily.previous / 24)
-                              .round()
-                              .toString() +
-                          'hrs',
-                      style: TextStyle(
-                          color: ColorPalatte.desaturatedBlue,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300),
-                    )
-                  ],
-                )
-              ],
-            ),
-          )
+          Consumer<TimeTrackingController>(builder:
+              (BuildContext context, TimeTrackingController controller, _) {
+            return Container(
+              height: 155,
+              margin: const EdgeInsets.symmetric(horizontal: 14),
+              decoration: BoxDecoration(
+                color: ColorPalatte.darkBlue,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        timeTrackingResponse.title,
+                        style: const TextStyle(
+                            color: ColorPalatte.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        getHoursFromPeriod(controller.selectedPeriod,
+                                    timeTrackingResponse.timeframes)
+                                .current
+                                .toString() +
+                            'hrs',
+                        style: const TextStyle(
+                            color: ColorPalatte.white,
+                            fontSize: 34,
+                            fontWeight: FontWeight.w100),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.more_horiz,
+                        color: ColorPalatte.paleBlue,
+                        size: 40,
+                      ),
+                      Text(
+                        getPeriodName(controller.selectedPeriod) +
+                            " - " +
+                            getHoursFromPeriod(controller.selectedPeriod,
+                                    timeTrackingResponse.timeframes)
+                                .previous
+                                .toString() +
+                            'hrs',
+                        style: TextStyle(
+                            color: ColorPalatte.desaturatedBlue,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w300),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            );
+          })
         ],
       ),
     );
