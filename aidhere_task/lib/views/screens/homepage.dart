@@ -4,6 +4,7 @@ import 'package:aidhere_task/core/utils/get_icon.dart';
 import 'package:aidhere_task/models/time_tracking_response.dart';
 import 'package:aidhere_task/views/widgets/profile_card.dart';
 import 'package:aidhere_task/views/widgets/time_category_card.dart';
+import 'package:aidhere_task/views/widgets/tt_drawer.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+      ),
+      drawer: const TtDrawer(),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -39,9 +44,6 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              // Consumer<TimeTrackingController>(builder: (BuildContext context,
-              //     TimeTrackingController controller, Widget? child) {
-              //   return
               FutureBuilder(
                   future: timeTrackingController.getTimeTrackingInfo(),
                   builder: (context,
@@ -70,17 +72,6 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(color: ColorPalatte.white),
                     );
                   })
-              // })
-              // TimeCategoryCard(
-              //   backGroundImage: workIcon,
-              //   backGroundColor: ColorPalatte.lightRedWork,
-              //   timeTrackingResponse: TimeTrackingResponse(
-              //       timeframes: Timeframes(
-              //           daily: TimeSpent(current: 300, previous: 400),
-              //           monthly: TimeSpent(current: 300, previous: 400),
-              //           weekly: TimeSpent(current: 300, previous: 400)),
-              //       title: "Work"),
-              // )
             ],
           ),
         ),

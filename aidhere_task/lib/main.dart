@@ -1,3 +1,4 @@
+import 'package:aidhere_task/controllers/theme_controller.dart';
 import 'package:aidhere_task/controllers/time_tracking_controller.dart';
 import 'package:aidhere_task/core/color_palatte.dart';
 import 'package:flutter/material.dart';
@@ -19,16 +20,19 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (ctx) => TimeTrackingController(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => ThemeController(),
         )
       ],
-      builder: (context, _) => MaterialApp(
-        title: 'Aidhere Task',
-        theme: ThemeData(
-          scaffoldBackgroundColor: ColorPalatte.veryDarkBlue,
-          fontFamily: GoogleFonts.rubik().fontFamily,
-        ),
-        home: const HomePage(),
-      ),
+      builder: (context, _) =>
+          Consumer<ThemeController>(builder: (context, themeController, _) {
+        return MaterialApp(
+          title: 'Aidhere Task',
+          theme: themeController.getMaterialTheme(),
+          home: const HomePage(),
+        );
+      }),
     );
   }
 }
