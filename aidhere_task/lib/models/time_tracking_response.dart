@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-List<TimeTrackingResponse> timeTrackingResponseFromMap(String str) =>
+List<TimeTrackingResponse> timeTrackingResponseFromJson(String str) =>
     List<TimeTrackingResponse>.from(
         json.decode(str).map((x) => TimeTrackingResponse.fromMap(x)));
 

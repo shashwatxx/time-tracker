@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 
 class ColorPalatte {
   //Primary Colors
+  static const Color white = Colors.white;
+
   static final Color blue =
       const HSLColor.fromAHSL(1, 246, 0.80, 0.60).toColor();
 
   static final Color lightRedWork =
-      const HSLColor.fromAHSL(1, 15, 0.100, 0.70).toColor();
+      const HSLColor.fromAHSL(1, 15, 1, 0.70).toColor();
 
   static final Color softBluePlay =
       const HSLColor.fromAHSL(1, 195, 0.74, 0.62).toColor();
 
   static final Color lightRedStudy =
-      const HSLColor.fromAHSL(1, 348, 0.100, 0.68).toColor();
+      const HSLColor.fromAHSL(1, 348, 1, 0.68).toColor();
 
   static final Color limeGreenExcercise =
       const HSLColor.fromAHSL(1, 145, 0.58, 0.55).toColor();
@@ -31,8 +33,28 @@ class ColorPalatte {
       const HSLColor.fromAHSL(1, 235, 0.46, 0.20).toColor();
 
   static final Color desaturatedBlue =
-      const HSLColor.fromAHSL(1, 235, 0.100, 0.87).toColor();
+      const HSLColor.fromAHSL(1, 235, 1, 0.87).toColor();
 
   static final Color paleBlue =
-      const HSLColor.fromAHSL(1, 236, 0.100, 0.87).toColor();
+      const HSLColor.fromAHSL(1, 236, 1, 0.87).toColor();
+
+  static Color getBgColor(String title) {
+    switch (title) {
+      case "Work":
+        return lightRedWork;
+      case "Play":
+        return softBluePlay;
+      case "Study":
+        return lightRedStudy;
+      case "Exercise":
+        return limeGreenExcercise;
+      case "Social":
+        return violetSocial;
+      case "Self Care":
+        return softOrangeSelfcare;
+
+      default:
+        return white;
+    }
+  }
 }

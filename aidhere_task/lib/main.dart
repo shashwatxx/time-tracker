@@ -1,6 +1,8 @@
+import 'package:aidhere_task/controllers/time_tracking_controller.dart';
 import 'package:aidhere_task/core/color_palatte.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import 'views/screens/homepage.dart';
 
@@ -13,13 +15,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Aidhere Task',
-      theme: ThemeData(
-        scaffoldBackgroundColor: ColorPalatte.veryDarkBlue,
-        fontFamily: GoogleFonts.rubik().fontFamily,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => TimeTrackingController(),
+        )
+      ],
+      builder: (context, _) => MaterialApp(
+        title: 'Aidhere Task',
+        theme: ThemeData(
+          scaffoldBackgroundColor: ColorPalatte.veryDarkBlue,
+          fontFamily: GoogleFonts.rubik().fontFamily,
+        ),
+        home: const HomePage(),
       ),
-      home: const HomePage(),
     );
   }
 }

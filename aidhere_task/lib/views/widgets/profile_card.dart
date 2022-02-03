@@ -25,7 +25,7 @@ class ProfileCard extends StatelessWidget {
               Text(
                 "Daily",
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
+                  color: ColorPalatte.paleBlue,
                   fontSize: 22,
                 ),
               ),
