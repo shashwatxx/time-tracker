@@ -44,6 +44,8 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
+
+              /// Using Future Builder to get the data from the API and build the Cards
               FutureBuilder(
                   future: timeTrackingController.getTimeTrackingInfo(),
                   builder: (context,
@@ -67,9 +69,22 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     }
-                    return const Text(
-                      "No data Found",
-                      style: TextStyle(color: ColorPalatte.white),
+                    return Column(
+                      children: [
+                        const Text(
+                          "No Data Found",
+                          style: TextStyle(
+                              color: ColorPalatte.white, fontSize: 30),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              setState(() {});
+                            },
+                            child: const Text("Retry !"))
+                      ],
                     );
                   })
             ],

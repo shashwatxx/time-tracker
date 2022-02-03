@@ -1,10 +1,7 @@
 import 'package:aidhere_task/controllers/theme_controller.dart';
 import 'package:aidhere_task/controllers/time_tracking_controller.dart';
-import 'package:aidhere_task/core/color_palatte.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import 'views/screens/homepage.dart';
 
 void main() {

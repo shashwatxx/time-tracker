@@ -1,6 +1,6 @@
-import 'package:aidhere_task/core/utils/period_enums.dart';
 import 'package:flutter/material.dart';
 
+///This Class provides static colors for the app using HslColor
 class ColorPalatte {
   //Primary Colors
   static const Color white = Colors.white;
@@ -39,6 +39,7 @@ class ColorPalatte {
   static final Color paleBlue =
       const HSLColor.fromAHSL(1, 236, 1, 0.87).toColor();
 
+// to get Background color for the Cards
   static Color getBgColor(String title) {
     switch (title) {
       case "Work":
@@ -58,6 +59,4 @@ class ColorPalatte {
         return white;
     }
   }
-
-  
 }

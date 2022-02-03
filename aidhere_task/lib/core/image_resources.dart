@@ -1,3 +1,5 @@
+
+/// This file is used to maintain the resource List such as Images,Icons and Fonts
 const String profileImage = 'assets/images/image-jeremy.png';
 const String ellipsisIcon = 'assets/images/icon-ellipsis.svg';
 const String excerciseIcon = 'assets/images/icon-exercise.svg';

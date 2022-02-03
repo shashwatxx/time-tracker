@@ -1,5 +1,6 @@
 import 'package:aidhere_task/core/image_resources.dart';
 
+/// To get the Icon from the title
 String getIcon(String title) {
   switch (title) {
     case "Work":

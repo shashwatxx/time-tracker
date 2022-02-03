@@ -9,13 +9,16 @@ import 'package:http/http.dart' as http;
 class TimeTrackingController extends ChangeNotifier {
   Period _selectedPeriod = Period.daily;
 
+  /// Get the selected period
   Period get selectedPeriod => _selectedPeriod;
 
-  setSelectedPeriod(Period period) {
+  /// Set the selected period
+  void setSelectedPeriod(Period period) {
     _selectedPeriod = period;
     notifyListeners();
   }
 
+  /// Get the time tracking data
   Future<List<TimeTrackingResponse>> getTimeTrackingInfo() async {
     try {
       http.Response response = await http.get(timeTrackingUrl, headers: {

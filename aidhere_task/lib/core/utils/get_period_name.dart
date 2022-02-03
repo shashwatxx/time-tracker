@@ -1,6 +1,6 @@
 import 'package:aidhere_task/core/utils/period_enums.dart';
-import 'package:aidhere_task/models/time_tracking_response.dart';
 
+/// To get the Period of the day
 String getPeriodName(Period period) {
   switch (period) {
     case Period.daily:
@@ -9,8 +9,5 @@ String getPeriodName(Period period) {
       return "Last Week";
     case Period.monthly:
       return "Last Month";
-    default:
-      return "";
   }
 }
-
