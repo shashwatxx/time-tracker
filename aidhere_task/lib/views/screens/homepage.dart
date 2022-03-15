@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     timeTrackingController =
         Provider.of<TimeTrackingController>(context, listen: false);
+
     super.initState();
   }
 

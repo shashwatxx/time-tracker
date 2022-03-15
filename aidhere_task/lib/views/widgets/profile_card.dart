@@ -29,9 +29,7 @@ class ProfileCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: () {
-                    controller.setSelectedPeriod(Period.daily);
-                  },
+                  onTap: () => controller.setSelectedPeriod(Period.daily),
                   child: Text(
                     "Daily",
                     style: TextStyle(
